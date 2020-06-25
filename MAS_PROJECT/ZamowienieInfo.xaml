@@ -1,0 +1,50 @@
+﻿<Window x:Class="MAS_PROJECT.ZamowienieInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MAS_PROJECT"
+        mc:Ignorable="d"
+        Title="Informacja o zamowieniu" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Options"/>
+            <MenuItem Header="Window"/>
+            <MenuItem Header="Help"/>
+        </Menu>
+
+        <Grid DockPanel.Dock="Left" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="0.4*"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="ZamowienieId_label" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Margin="15 0 15 0" FontSize="30">Zamówienie#0</Label>
+            <DataGrid x:Name="Produkty_DataGrid" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"  Margin="15 0 15 0"  AutoGenerateColumns="False" CanUserAddRows="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nazwa" Binding="{Binding nazwa}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn x:Name="TypCol" Header="Typ" Binding="{Binding className}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Garnitur" Binding="{Binding Garnitur.nazwa}" Width="*" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn x:Name="Aval_col" Header="Obecność" Binding="{Binding czyZarezerwowany, UpdateSourceTrigger=PropertyChanged}"  Width="*">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Path=ElementOdziezyViewModel.AllSelected}">Obecność</CheckBox>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+            <Button x:Name="Dalej_button" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" Click="Dalej_button_Click"  Margin="15 0 15 0" >Dalej</Button>
+        </Grid>
+    </DockPanel>
+
+</Window>
